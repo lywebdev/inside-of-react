@@ -1,25 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState, useCallback} from 'react';
+import Button from "./src/components/UI/Button";
+import ParagraphOutput from "./src/components/Output/ParagraphOutput";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    console.log('App component');
+
+    const [isParagraphShow, setIsParagraphShow] = useState(false);
+
+    const toggleParagraph = useCallback(() => {
+        setIsParagraphShow(previousISParagraphShow => !previousISParagraphShow);
+    }, []);
+
+    return (
+        <div className="App">
+            <h1>Inside Of React</h1>
+            <ParagraphOutput isShown={isParagraphShow}/>
+            <Button onClick={toggleParagraph}>Показать / Скрыть</Button>
+        </div>
+    );
 }
 
 export default App;
